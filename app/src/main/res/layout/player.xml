@@ -158,6 +158,20 @@
                     </LinearLayout>
 
                     <org.schabi.newpipe.views.NewPipeTextView
+                        android:id="@+id/resizeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:minWidth="0dp"
+                        android:padding="@dimen/player_main_buttons_padding"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlHardcoded"
+                        tools:text="FIT" />
+
+                    <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/qualityTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
@@ -244,20 +258,6 @@
                     android:visibility="invisible"
                     tools:ignore="RtlHardcoded"
                     tools:visibility="visible">
-
-                    <org.schabi.newpipe.views.NewPipeTextView
-                        android:id="@+id/resizeTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/player_main_buttons_padding"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText,RtlHardcoded"
-                        tools:text="FIT" />
 
                     <FrameLayout
                         android:layout_width="0dp"
