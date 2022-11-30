@@ -5,7 +5,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.os.Build
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -13,6 +12,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import org.schabi.newpipe.R
+import org.schabi.newpipe.util.PendingIntentCompat
 
 /**
  * This class contains all of the methods that should be used to let the user know that an error has
@@ -104,32 +104,21 @@ class ErrorUtil {
          */
         @JvmStatic
         fun createNotification(context: Context, errorInfo: ErrorInfo) {
-            var pendingIntentFlags = PendingIntent.FLAG_UPDATE_CURRENT
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                pendingIntentFlags = pendingIntentFlags or PendingIntent.FLAG_IMMUTABLE
-            }
-
             val notificationBuilder: NotificationCompat.Builder =
                 NotificationCompat.Builder(
                     context,
                     context.getString(R.string.error_report_channel_id)
                 )
-                    .setSmallIcon(
-                        // the vector drawable icon causes crashes on KitKat devices
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                            R.drawable.ic_bug_report
-                        else
-                            android.R.drawable.stat_notify_error
-                    )
+                    .setSmallIcon(R.drawable.ic_bug_report)
                     .setContentTitle(context.getString(R.string.error_report_notification_title))
                     .setContentText(context.getString(errorInfo.messageStringId))
                     .setAutoCancel(true)
                     .setContentIntent(
-                        PendingIntent.getActivity(
+                        PendingIntentCompat.getActivity(
                             context,
                             0,
                             getErrorActivityIntent(context, errorInfo),
-                            pendingIntentFlags
+                            PendingIntent.FLAG_UPDATE_CURRENT
                         )
                     )
 
